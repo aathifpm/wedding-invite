@@ -215,19 +215,22 @@
       // Section-scoped stagger for grids / lineage
       document.querySelectorAll('.event-grid, .lineage, .couple__meta').forEach((group) => {
         const items = group.children;
-        gsap.from(items, {
-          opacity: 0,
-          y: 20,
-          filter: 'blur(4px)',
-          duration: 1.2,
-          ease: 'power3.out',
-          stagger: 0.12,
-          scrollTrigger: {
-            trigger: group,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        });
+        gsap.fromTo(items,
+          { opacity: 0, y: 20, filter: 'blur(4px)' },
+          {
+            opacity: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'power3.out',
+            stagger: 0.12,
+            scrollTrigger: {
+              trigger: group,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        );
       });
 
       // Recalculate after fonts/layout settle so triggers fire correctly

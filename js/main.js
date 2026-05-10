@@ -193,7 +193,10 @@
       }
 
       const others = Array.from(document.querySelectorAll('main [data-reveal]'))
-        .filter((el) => !el.closest('.hero'));
+        .filter((el) => !el.closest('.hero'))
+        // Skip items handled by the grid/lineage stagger below to avoid
+        // conflicting tweens that can leave elements stuck at opacity 0.
+        .filter((el) => !el.parentElement?.matches('.event-grid, .lineage, .couple__meta'));
       others.forEach((el) => {
         gsap.to(el, {
           opacity: 1,
@@ -226,6 +229,11 @@
           },
         });
       });
+
+      // Recalculate after fonts/layout settle so triggers fire correctly
+      // when the page is reloaded with a restored scroll position.
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+      window.addEventListener('load', () => ScrollTrigger.refresh());
     }
   }
 

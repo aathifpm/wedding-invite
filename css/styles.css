@@ -584,41 +584,37 @@ main { position: relative; z-index: 10; }
   color: var(--color-sandstone);
   line-height: 1.4;
 }
-.event-card__link {
-  display: inline-block;
+
+.event-card--link {
+  text-decoration: none;
+  color: inherit;
+}
+.event-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   margin-top: var(--space-md);
+  padding-top: var(--space-sm);
   font-family: var(--font-body);
   font-size: var(--text-xs);
-  letter-spacing: 0.35em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--color-gold-soft);
-  text-decoration: none;
-  padding: 0.6rem 1.4rem;
-  border: 1px solid rgba(216, 185, 122, 0.25);
-  border-radius: 2px;
-  transition: all var(--dur-mid) var(--ease-cinema);
-  position: relative;
-  overflow: hidden;
+  border-top: 1px solid rgba(216, 185, 122, 0.18);
+  width: 100%;
+  justify-content: center;
+  transition: color var(--dur-mid) var(--ease-cinema),
+              letter-spacing var(--dur-mid) var(--ease-cinema);
 }
-.event-card__link::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(216, 185, 122, 0.08), rgba(185, 152, 90, 0.12));
-  opacity: 0;
-  transition: opacity var(--dur-mid) var(--ease-cinema);
+.event-card__cta svg {
+  transition: transform var(--dur-mid) var(--ease-cinema);
 }
-.event-card__link:hover {
+.event-card--link:hover .event-card__cta {
   color: var(--color-paper);
-  border-color: var(--color-gold);
+  letter-spacing: 0.38em;
+}
+.event-card--link:hover .event-card__cta svg {
   transform: translateY(-2px);
-}
-.event-card__link:hover::before {
-  opacity: 1;
-}
-.event-card__link:focus-visible {
-  outline: 1px solid var(--color-gold);
-  outline-offset: 3px;
 }
 
 @media (max-width: 800px) {
